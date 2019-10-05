@@ -8,5 +8,7 @@ services:
       - "5044:5044"
     environment:
       -LS_HEAP_SIZE: "512m"
+      -LS_OPTS: "--config.reload.automatic --config.reload.interval 5"
     volumes:
-     - ./logstash/Configuration.conf:/opt/logstash/config.d
+     - ./ELK/logstash/01-Configuration.conf:/etc/logstash/conf.d/01.config.conf
+    

@@ -6,3 +6,4 @@ WORKDIR ${LOGSTASH_HOME}
 RUN gosu logstash bin/logstash-plugin install logstash-input-rss
 
 ## move the configuration or the logstash to it's place
+RUN rm /etc/logstash/conf.d/*
