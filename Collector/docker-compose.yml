@@ -1,0 +1,12 @@
+version: "3"
+services:
+  elk:
+    build: ./ELK
+    ports:
+      - "5601:5601"
+      - "9200:9200"
+      - "5044:5044"
+    environment:
+      -LS_HEAP_SIZE: "512m"
+    volumes:
+     - ./logstash/Configuration.conf:/opt/logstash/config.d
