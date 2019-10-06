@@ -1,8 +1,8 @@
-# collector
-is a part of our product which consiste of a ELK instance that can collect, filter and stor data.
+# Collector
+Is a part of our product which consists of an ELK instance that can collect, filter and store data.
 
 ---
-**how to run ?** 
+**How to run?** 
 
-- first you have to install ` docker ` and ` docker compose `
-- to run the ` docker-compose.yml ` file move to the collector folder and run run this `sudo docker-compose up `
+- Install ` docker ` and ` docker compose `
+- Run the ` docker-compose.yml ` file, change directory to the collector's folder and run this command `sudo docker-compose up `
