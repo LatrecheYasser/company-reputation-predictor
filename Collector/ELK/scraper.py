@@ -2,11 +2,10 @@ import sys
 from newspaper import Article
 
 url = sys.argv[1]
-
-article = Article(url)
+article = Article(url=url, language="fr")
 article.download()
-if article.is_valid_url():
+try:
     article.parse()
-    print(article.text)
-else:
-    print("Error downloading article: " + url, file=sys.stderr)
+    print(article.text, file=sys.stdout)
+except Exception as e:
+    print(str(e) , file=sys.stderr)
