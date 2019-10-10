@@ -1,7 +1,7 @@
 import sys
 from newspaper import Article
 
-url = sys.argv[1]
+url = sys.argv[1].strip()
 article = Article(url=url, language="fr")
 article.download()
 try:
