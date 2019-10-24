@@ -16,6 +16,7 @@ try:
     article_dict = {"url" : page.url, "title" : page.title, 
             "description" : page.summary, "text" : page.content}
 
-    print(json.dumps(article_dict), file=sys.stdout)
+    final_dict = {"list":[article_dict]}
+    print(json.dumps(final_dict), file=sys.stdout)
 except Exception as e:
     print(str(e), file=sys.stderr)
