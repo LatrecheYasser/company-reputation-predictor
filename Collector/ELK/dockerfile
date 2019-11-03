@@ -2,12 +2,17 @@ FROM sebp/elk
 
 
 # Move to logstash home and install the rss plugin 
+RUN apt-get install -y crul
 WORKDIR ${LOGSTASH_HOME}
 RUN gosu logstash bin/logstash-plugin install logstash-input-rss
 RUN apt-get install python3
 RUN apt-get update
 RUN apt-get install -y python3-pip
 RUN pip3 install newspaper3k
-
+RUN apt-get install crul
+COPY ./elasticsearch/backup_script.sh .
 ## Delete default config files to avoid conflicts with the created config file.
 RUN rm /etc/logstash/conf.d/*
+
+# run the script of backup
+# RUN ./backup_script.sh
