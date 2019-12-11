@@ -2,17 +2,28 @@ FROM sebp/elk
 
 
 # Move to logstash home and install the rss plugin 
-RUN apt-get install -y crul
+RUN apt-get install -y curl
+
 WORKDIR ${LOGSTASH_HOME}
+
 RUN gosu logstash bin/logstash-plugin install logstash-input-rss
 RUN apt-get install python3
 RUN apt-get update
 RUN apt-get install -y python3-pip
 RUN pip3 install newspaper3k
-RUN apt-get install crul
+
 COPY ./elasticsearch/backup_script.sh .
+
+
 ## Delete default config files to avoid conflicts with the created config file.
 RUN rm /etc/logstash/conf.d/*
 
+ENV ES_HOME /opt/elasticsearch
+WORKDIR ${ES_HOME}
+RUN yes | CONF_DIR=/etc/elasticsearch gosu elasticsearch bin/elasticsearch-plugin  install  https://github.com/spinscale/elasticsearch-ingest-opennlp/releases/download/7.4.0.1/ingest-opennlp-7.4.0.1.zip
+#RUN yes | gosu elasticsearch bin/elasticsearch-plugin install com.rosette.elasticsearch:rosette-elasticsearch-plugin:7.4.0.0
+
+
+# 
 # run the script of backup
 # RUN ./backup_script.sh

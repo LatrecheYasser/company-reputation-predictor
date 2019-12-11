@@ -10,6 +10,8 @@ services:
       -LS_HEAP_SIZE: "512m"
       -LS_OPTS: "--config.reload.automatic --config.reload.interval 5"
     volumes:
-     - ./ELK/logstash/logStash.conf:/etc/logstash/conf.d/01.config.conf
+     - ./ELK/logstash/articles:/etc/logstash/conf.d/articles
+     - ./ELK/logstash/Json_local_files.conf:/etc/logstash/conf.d/01.config.conf
+     - ./ELK/logstash/Rss_logStash.conf:/etc/logstash/conf.d/02.config.conf
      - ./ELK/scraper.py:/home/scraper.py
-    
+     - ./ELK/elasticsearch/backup/:/var/backups/elasticsearch
